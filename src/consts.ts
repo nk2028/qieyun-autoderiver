@@ -1,7 +1,9 @@
-import type { Dispatch, DispatchWithoutAction, SetStateAction } from "react";
+import type { Dispatch, DispatchWithoutAction, ReactChild, ReactPortal, SetStateAction } from "react";
 
+import type { CustomNode } from "./Classes/CustomElement";
 import type ParameterSet from "./Classes/ParameterSet";
 import type samples from "./samples";
+import type { 音韻地位 } from "qieyun";
 
 export const qieyunExamplesURLPrefix = "https://cdn.jsdelivr.net/gh/nk2028/qieyun-examples@main/";
 export const qieyunTextLabelURLPrefix = "https://cdn.jsdelivr.net/gh/nk2028/qieyun-text-label@main/";
@@ -48,6 +50,10 @@ export const options = {
 export type Option = keyof typeof options;
 export const allOptions = Object.entries(options) as [Option, string][];
 
+export function noop() {
+  // no operation
+}
+
 export type MainState = Readonly<{
   schemas: SchemaState[];
   article: string;
@@ -63,6 +69,17 @@ export type SchemaState = Readonly<{
   parameters: ParameterSet;
 }>;
 
+export type Entry = Readonly<{
+  結果: Query[];
+  擬音: CustomNode[];
+}>;
+
+export type Query = Readonly<{
+  字頭: string;
+  解釋: string;
+  音韻地位: 音韻地位;
+}>;
+
 type Values<T> = T extends Record<PropertyKey, infer T> ? Values<T> : T;
 export type Sample = Values<typeof samples>;
 export type Folder = { [name: string]: Folder | Sample };
@@ -75,3 +92,6 @@ export type UseMainState = Use<"state", MainState>;
 export type UseLoading = Use<"loading", boolean>;
 export type UseOperation = UseGet<"operation", number> & { increaseOperation: DispatchWithoutAction };
 export type UseSetSyncedArticle = UseSet<"syncedArticle", string[]>;
+
+type ReactFragment = Iterable<ReactNode>; // No {} !!!
+export type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;

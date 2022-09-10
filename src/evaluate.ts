@@ -1,13 +1,12 @@
-import { evaluateOption, getArticle, setArticle } from "qieyun-autoderiver-evaluate";
-
 import Schema, { UserSchema } from "./Classes/Schema";
 import { qieyunTextLabelURLPrefix } from "./consts";
+import { evaluateOption, getArticle, setArticle } from "./options";
 import { fetchFile, normalizeFileName, notifyError } from "./utils";
 
 import type { Require } from "./Classes/Schema";
-import type { MainState } from "./consts";
+import type { MainState, ReactNode } from "./consts";
 
-export default async function evaluate(state: MainState): Promise<Node | string | (Node | string)[]> {
+export default async function evaluate(state: MainState): Promise<ReactNode> {
   const { schemas, option } = state;
 
   if (option === "convertPresetArticle" && !getArticle())

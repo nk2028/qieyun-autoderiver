@@ -1,6 +1,6 @@
 {
   "name": "qieyun-autoderiver",
-  "version": "0.2.0-beta.3",
+  "version": "0.2.0-beta.4",
   "description": "An automatic tool to generate the derivatives of the Qieyun phonological system",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
   "keywords": [
     "historical-linguistics",
     "middle-chinese",
+    "tshet-uinh",
     "qieyun"
   ],
   "dependencies": {
@@ -31,7 +32,6 @@
     "monaco-editor": "^0.33.0",
     "purecss": "^2.0.6",
     "qieyun": "^0.13.4",
-    "qieyun-autoderiver-evaluate": "file:../qieyun-autoderiver-evaluate",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sweetalert2": "^11.4.7",
@@ -57,11 +57,7 @@
     "typescript": "^4.6.3"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": ">0.2% and not dead and supports es6-module",
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

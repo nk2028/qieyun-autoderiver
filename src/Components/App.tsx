@@ -8,6 +8,7 @@ import { faCirclePlay, faInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Swal from "../Classes/SwalReact";
+import { noop } from "../consts";
 import Main from "./Main";
 
 injectGlobal`
@@ -19,6 +20,8 @@ injectGlobal`
       "Noto Serif CJK SC", "Source Han Serif", "Noto Serif CJK JP", "Source Han Serif TC", "Noto Serif CJK TC",
       "Noto Serif KR", "Noto Serif SC", "Noto Serif TC", "HanaMin", serif;
     font-language-override: "KOR";
+    overflow: hidden;
+    touch-action: none;
   }
   :lang(och-Latn-fonipa) {
     font-family: "CharisSILW", serif;
@@ -228,9 +231,7 @@ const FontPreload = styled.span`
 `;
 
 export default function App() {
-  const handleRef = useRef(() => {
-    //
-  });
+  const handleRef = useRef(noop);
   return (
     <Container>
       <Content>
