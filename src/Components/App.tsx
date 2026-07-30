@@ -36,6 +36,10 @@ injectGlobal`
       "Noto Serif CJK SC", "Source Han Serif", "Noto Serif CJK JP", "Source Han Serif TC", "Noto Serif CJK TC",
       "Noto Serif KR", "Noto Serif SC", "Noto Serif TC", "Jomolhari", "HanaMin", "CharisSILW", sans-serif;
   }
+  html:lang(ja), html :lang(ja) {
+    font-family: "Noto Serif JP", "Source Han Serif", "Noto Serif CJK JP", "HanaMin", serif;
+    font-language-override: normal;
+  }
   body.dragging {
     user-select: none;
   }
@@ -272,7 +276,7 @@ function showInfoBox(content: JSX.Element) {
   });
 }
 
-function showAbout(t: TFunction) {
+function showAboutDefault(t: TFunction) {
   return showInfoBox(
     <>
       <h2>{t("app.info.about.title")}</h2>
@@ -329,7 +333,7 @@ function showAbout(t: TFunction) {
   );
 }
 
-function showHelp(t: TFunction) {
+function showHelpDefault(t: TFunction) {
   return showInfoBox(
     <>
       <h2>{t("app.info.userGuide.title")}</h2>
@@ -495,6 +499,244 @@ function showHelp(t: TFunction) {
   );
 }
 
+function showAboutJapanese(t: TFunction) {
+  return showInfoBox(
+    <>
+      <h2>{t("app.info.about.title")}</h2>
+      <p>
+        切韻音系導出ツールは{" "}
+        <a target="_blank" rel="noreferrer" href="https://nk2028.shn.hk/">
+          nk2028
+        </a>{" "}
+        が開発しています。私たちは、歴史中国語音韻論・異体字・日本語学を中心に、言語学に関するプロジェクトを開発しています。
+      </p>
+      <p>
+        このツールの使い方や音韻論についての議論に興味がある方は、{" "}
+        <a target="_blank" rel="noreferrer" href="https://qm.qq.com/q/q50w3CdZuM">
+          QQ音韻学討論グループ（グループ番号：739872788）
+        </a>
+        、または{" "}
+        <a target="_blank" rel="noreferrer" href="https://t.me/nk2028_discuss">
+          Telegram nk2028コミュニティ（@nk2028_discuss）
+        </a>{" "}
+        にご参加ください。
+      </p>
+      <p>
+        GitHubでは、
+        <a target="_blank" rel="noreferrer" href="https://github.com/nk2028/tshet-uinh-examples">
+          プリセット導出スキームのソースコード
+        </a>
+        と
+        <a target="_blank" rel="noreferrer" href="https://github.com/nk2028/obsolete-romanizations-examples">
+          旧式の導出スキームのソースコード
+        </a>
+        を公開しています。
+      </p>
+      <p>
+        <a target="_blank" rel="noreferrer" href="https://github.com/nk2028/tshet-uinh-deriver">
+          このツールのソースコード
+        </a>
+        もGitHubで公開しています。
+      </p>
+      <h2>プライバシーポリシー</h2>
+      <p>
+        切韻音系導出ツール（以下「本ページ」）は、オープンソースのウェブサービスです。本ページの開発者は利用者のプライバシーを重視しており、本ページを通じて利用者のデータを収集することはありません。
+      </p>
+      <p>以下では、本ページがどのようにプライバシーを保護しているかを説明します。</p>
+      <b>入力した内容</b>
+      <p>
+        本ページの開発者は、利用者が入力した内容を収集しません。入力内容に関する処理は、すべて利用者の端末上で行われます。入力した文章や導出結果を含むデータがサーバーへ送信されることはありません。
+      </p>
+      <b>その他のデータ</b>
+      <p>
+        本ページで使用するコンテンツは、GitHub Pages、jsDelivr、Google
+        Fontsでホストされています。本ページへアクセスすると、ブラウザーはこれらのサイトと通信します。本ページの開発者は、その際に生じるデータを閲覧できず、各サイトによるデータの利用方法を制御することもできません。
+      </p>
+    </>,
+  );
+}
+
+function showHelpJapanese(t: TFunction) {
+  return showInfoBox(
+    <>
+      <h2>{t("app.info.userGuide.title")}</h2>
+      <h3>キーボードショートカット</h3>
+      <p>ショートカットは、エディターにフォーカスがある場合にのみ使用できます。</p>
+      <ul>
+        <li>
+          <kbd>
+            <kbd>Alt</kbd>+<kbd>N</kbd>
+          </kbd>{" "}
+          または{" "}
+          <kbd>
+            <kbd>Option</kbd>+<kbd>N</kbd>
+          </kbd>{" "}
+          （
+          <kbd>
+            <kbd>⌥</kbd>
+            <kbd>N</kbd>
+          </kbd>
+          ）：スキームを新規作成
+        </li>
+        <li>
+          <kbd>
+            <kbd>Alt</kbd>+<kbd>S</kbd>
+          </kbd>{" "}
+          または{" "}
+          <kbd>
+            <kbd>Option</kbd>+<kbd>S</kbd>
+          </kbd>{" "}
+          （
+          <kbd>
+            <kbd>⌥</kbd>
+            <kbd>S</kbd>
+          </kbd>
+          ）：スキームを削除
+        </li>
+        <li>
+          <kbd>
+            <kbd>Ctrl</kbd>+<kbd>O</kbd>
+          </kbd>{" "}
+          または{" "}
+          <kbd>
+            <kbd>Cmd</kbd>+<kbd>O</kbd>
+          </kbd>{" "}
+          （
+          <kbd>
+            <kbd>⌘</kbd>
+            <kbd>O</kbd>
+          </kbd>
+          ）：ローカルからスキームを開く
+        </li>
+        <li>
+          <kbd>
+            <kbd>Ctrl</kbd>+<kbd>S</kbd>
+          </kbd>{" "}
+          または{" "}
+          <kbd>
+            <kbd>Cmd</kbd>+<kbd>S</kbd>
+          </kbd>{" "}
+          （
+          <kbd>
+            <kbd>⌘</kbd>
+            <kbd>S</kbd>
+          </kbd>
+          ）：スキームをローカルに保存
+        </li>
+        <li hidden>
+          <kbd>
+            <kbd>Ctrl</kbd>+<kbd>`</kbd>
+          </kbd>{" "}
+          または{" "}
+          <kbd>
+            <kbd>Cmd</kbd>+<kbd>`</kbd>
+          </kbd>{" "}
+          （
+          <kbd>
+            <kbd>⌘</kbd>
+            <kbd>`</kbd>
+          </kbd>
+          ）：導出操作パネルの表示・非表示を切り替える
+        </li>
+        <li>
+          <kbd>
+            <kbd>Alt</kbd>+<kbd>R</kbd>
+          </kbd>{" "}
+          または{" "}
+          <kbd>
+            <kbd>Option</kbd>+<kbd>R</kbd>
+          </kbd>{" "}
+          （
+          <kbd>
+            <kbd>⌥</kbd>
+            <kbd>R</kbd>
+          </kbd>
+          ）、あるいは{" "}
+          <kbd>
+            <kbd>Shift</kbd>+<kbd>Enter</kbd>
+          </kbd>{" "}
+          （
+          <kbd>
+            <kbd>⇧</kbd>
+            <kbd>↩</kbd>
+          </kbd>
+          ）：導出を実行して結果を表示
+        </li>
+        <li>
+          <kbd>Esc</kbd>（<kbd>⎋</kbd>）：「スキームを新規作成」または「導出結果」パネルを閉じる
+        </li>
+      </ul>
+      <p>導出スキームのファイルは、ドラッグ＆ドロップでも読み込めます。</p>
+      <h3>個別の字音を指定する</h3>
+      <p>
+        独自の文章を導出する際、ある字に複数の読みがあり、導出結果も異なる場合、その字は結果画面で色付きで表示されます。ポインターを重ねるか、タッチ画面でタップするとメニューが開き、使用する字音を選択できます。
+      </p>
+      <p>
+        「選択した音韻地位を入力欄に反映」が有効な場合、選択した字音は文章内に記録されます（形式は次段を参照）。次回の導出時にも同じ字音が既定で選択されます。
+      </p>
+      <p>
+        特定の字を指定した音で導出するには、その直後に半角丸括弧「<code>()</code>
+        」を置き、括弧内に音韻地位の記述を入力します。形式は導出結果に表示される音韻地位、または{" "}
+        <a target="_blank" rel="noreferrer" href="https://nk2028.shn.hk/tshet-uinh-js/">
+          TshetUinh.jsドキュメント
+        </a>
+        を参照してください。
+      </p>
+      <h3>導出スキームを記述する</h3>
+      <p>
+        導出スキームのコードは関数として実行され、<code>return</code>
+        で結果を返します。関数には「導出」と「スキーム設定」の2つの実行モードがあります。
+      </p>
+      <p>
+        「導出」モードでは、導出対象となる各字・音韻地位について関数が1回実行され、導出結果を返す必要があります。使用できる引数は次のとおりです。
+      </p>
+      <ul>
+        <li>
+          <code>音韻地位: TshetUinh.音韻地位</code>：導出対象の音韻地位。詳しくは{" "}
+          <a target="_blank" rel="noreferrer" href="https://nk2028.shn.hk/tshet-uinh-js/">
+            TshetUinh.jsドキュメント
+          </a>
+          を参照してください。
+        </li>
+        <li>
+          <code>字頭: string | null</code>：現在導出している字
+        </li>
+        <li>
+          <code>選項: Record&lt;String, unknown&gt;</code>
+          ：利用者が指定したスキームの各パラメーターを含むオブジェクト（後述の「スキーム設定」モードを参照）
+        </li>
+      </ul>
+      <p>
+        「スキーム設定」モードは、スキームの作成時、コードの変更後、またはパラメーターの変更・リセット後に実行され、スキームで調整可能なパラメーターを返す必要があります。
+      </p>
+      <p>
+        このモードでは<code>選項</code>引数だけが渡され、<code>音韻地位</code>と<code>字頭</code>はどちらも{" "}
+        <code>undefined</code>になります。<code>if (!音韻地位)</code>を使って実行モードを判別できます。<code>選項</code>
+        引数の形式は「導出」モードとほぼ同じです。スキームの作成直後またはオプションのリセット後は空のオブジェクト（
+        <code>{"{}"}</code>）となり、それ以外の場合は現在の各パラメーターを含むオブジェクトとなります。
+      </p>
+      <p>
+        「スキーム設定」モードでは、スキームの設定項目をリスト（<code>Array</code>）として返します。各項目の形式は{" "}
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://github.com/nk2028/tshet-uinh-deriver-tools/wiki/%E6%8E%A8%E5%B0%8E%E6%96%B9%E6%A1%88%E8%A8%AD%E5%AE%9A%E9%A0%85%E5%88%97%E8%A1%A8%E6%A0%BC%E5%BC%8F">
+          tshet-uinh-deriver-toolsドキュメント
+        </a>
+        を参照してください。可変パラメーターが不要な場合は、空のリスト（<code>[]</code>）を返すことができます。
+      </p>
+    </>,
+  );
+}
+
+function showAbout(t: TFunction, language: string) {
+  return language === "ja" ? showAboutJapanese(t) : showAboutDefault(t);
+}
+
+function showHelp(t: TFunction, language: string) {
+  return language === "ja" ? showHelpJapanese(t) : showHelpDefault(t);
+}
+
 const Container = styled.div`
   position: absolute;
   inset: 0;
@@ -642,13 +884,16 @@ const FontPreload = styled.span`
 
 const baseUrl = "https://nk2028.shn.hk/tshet-uinh-deriver/";
 const languageInfo = {
-  zh: { htmlLang: "zh-HK", query: "zh-HK", ogLocale: "zh_HK", alternateOgLocale: "en_GB" },
-  en: { htmlLang: "en-GB", query: "en-GB", ogLocale: "en_GB", alternateOgLocale: "zh_HK" },
+  zh: { htmlLang: "zh-HK", query: "zh-HK", ogLocale: "zh_HK", alternateOgLocales: ["en_GB", "ja_JP"] },
+  en: { htmlLang: "en-GB", query: "en-GB", ogLocale: "en_GB", alternateOgLocales: ["zh_HK", "ja_JP"] },
+  ja: { htmlLang: "ja", query: "ja", ogLocale: "ja_JP", alternateOgLocales: ["zh_HK", "en_GB"] },
 } as const;
 type AppLanguage = keyof typeof languageInfo;
 
 function getAppLanguage(language: string | undefined): AppLanguage {
-  return language?.startsWith("en") ? "en" : "zh";
+  if (language?.startsWith("en")) return "en";
+  if (language?.startsWith("ja")) return "ja";
+  return "zh";
 }
 
 function setMetaContent(selector: string, content: string) {
@@ -658,7 +903,7 @@ function setMetaContent(selector: string, content: string) {
 function updateDocumentMetadata(language: AppLanguage, t: TFunction) {
   const info = languageInfo[language];
   const requestedLanguage = new URLSearchParams(location.search).get("lang");
-  const hasExplicitLanguage = ["zh", "zh-HK", "en", "en-GB"].includes(requestedLanguage ?? "");
+  const hasExplicitLanguage = ["zh", "zh-HK", "en", "en-GB", "ja", "ja-JP"].includes(requestedLanguage ?? "");
   const canonicalUrl = hasExplicitLanguage ? `${baseUrl}?lang=${info.query}` : baseUrl;
   const title = t("app.title");
   const description = t("app.meta.description");
@@ -669,7 +914,9 @@ function updateDocumentMetadata(language: AppLanguage, t: TFunction) {
   document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute("href", canonicalUrl);
   setMetaContent('meta[name="description"]', description);
   setMetaContent('meta[property="og:locale"]', info.ogLocale);
-  setMetaContent('meta[property="og:locale:alternate"]', info.alternateOgLocale);
+  document.querySelectorAll<HTMLMetaElement>('meta[property="og:locale:alternate"]').forEach((element, index) => {
+    element.content = info.alternateOgLocales[index] ?? "";
+  });
   setMetaContent('meta[property="og:site_name"]', title);
   setMetaContent('meta[property="og:title"]', title);
   setMetaContent('meta[property="og:description"]', socialDescription);
@@ -687,8 +934,14 @@ function updateDocumentMetadata(language: AppLanguage, t: TFunction) {
       webpage["name"] = title;
       webpage["description"] = description;
       webpage["inLanguage"] = info.htmlLang;
-      structuredData.textContent = JSON.stringify(data);
     }
+    const application = data["@graph"]?.find(item => item["@type"] === "WebApplication");
+    if (application) {
+      application["name"] = title;
+      application["description"] = description;
+      application["inLanguage"] = info.htmlLang;
+    }
+    structuredData.textContent = JSON.stringify(data);
   }
 }
 
@@ -743,10 +996,14 @@ export default function App() {
                   onClick={useCallback(() => evaluateHandlerRef.current(), [])}>
                   <FontAwesomeIcon icon={faCirclePlay} />
                 </ApplyButton>
-                <ShowButton title={t("app.info.about.title")} onClick={useCallback(() => showAbout(t), [t])}>
+                <ShowButton
+                  title={t("app.info.about.title")}
+                  onClick={useCallback(() => showAbout(t, activeLanguage), [activeLanguage, t])}>
                   <FontAwesomeIcon icon={faInfo} fixedWidth />
                 </ShowButton>
-                <ShowButton title={t("app.info.userGuide.title")} onClick={useCallback(() => showHelp(t), [t])}>
+                <ShowButton
+                  title={t("app.info.userGuide.title")}
+                  onClick={useCallback(() => showHelp(t, activeLanguage), [activeLanguage, t])}>
                   <FontAwesomeIcon icon={faQuestion} fixedWidth />
                 </ShowButton>
                 <LangSwitcher
@@ -789,6 +1046,20 @@ export default function App() {
                         }
                       }}>
                       English
+                    </LangMenuItem>
+                    <LangMenuItem
+                      role="button"
+                      tabIndex={0}
+                      lang="ja"
+                      $active={activeLanguage === "ja"}
+                      onClick={() => selectLanguage("ja")}
+                      onKeyDown={e => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          selectLanguage("ja");
+                        }
+                      }}>
+                      日本語
                     </LangMenuItem>
                   </LangMenu>
                 </LangSwitcher>
