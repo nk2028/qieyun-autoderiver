@@ -1,5 +1,8 @@
 {
   "app.title": "Tshet-uinh Deriver",
+  "app.meta.description": "An online tool for Qieyun reconstruction, Middle Chinese transcription, and the derivation of historical and modern Chinese phonological systems.",
+  "app.meta.ogDescription": "Generate Qieyun and Middle Chinese reconstructions, then derive historical and modern Chinese phonological systems.",
+  "app.meta.imageAlt": "Tshet-uinh Deriver icon",
   "app.goToLegacy": "Go to Legacy Version",
   "app.defaultFileName": "Unnamed",
   "app.info.about.title": "About",
@@ -28,6 +31,7 @@
   "options.general.deriveAction.compareSchemas": "Compare multiple schemes and report differing phonological positions",
   "options.general.deriveAction.exportAllSyllables": "Export all syllables",
   "options.general.deriveAction.exportAllSyllablesWithCount": "Export all syllables with counts",
+  "options.general.deriveAction.label": "Derivation action",
   "options.general.articleInput.placeholder": "Input box",
   "options.general.convertVariant": "Convert Variant Characters",
   "options.general.syncPosition": "Synchronise Phonological Position Selection to Input Box",

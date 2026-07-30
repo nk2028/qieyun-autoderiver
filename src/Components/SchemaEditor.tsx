@@ -230,7 +230,7 @@ const Options = styled.form`
   padding: 1.17rem 1rem;
   overflow-y: auto;
 `;
-const OptionsTitle = styled.h3`
+const OptionsTitle = styled.h2`
   display: flex;
   align-items: center;
   margin: 0;
@@ -350,7 +350,15 @@ export default function SchemaEditor({ state, setState, generalOptions, evaluate
   useEffect(() => {
     async function loadSchemas() {
       const query = new URLSearchParams(location.search);
-      history.replaceState(null, document.title, location.pathname); // Remove query
+      const remainingQuery = new URLSearchParams();
+      const language = query.get("lang");
+      if (language) remainingQuery.set("lang", language);
+      const remainingSearch = remainingQuery.toString();
+      history.replaceState(
+        null,
+        document.title,
+        `${location.pathname}${remainingSearch ? `?${remainingSearch}` : ""}${location.hash}`,
+      ); // Remove one-time schema-loading parameters, but retain the UI language
       const schemasToLoad: { type: "href" | "sample"; value: string }[] = [];
       for (const [key, value] of query) {
         switch (key) {

@@ -289,7 +289,10 @@ export default function Main({ evaluateHandlerRef }: { evaluateHandlerRef: Mutab
           <>
             <GeneralOptions>
               <label>
-                <select onChange={useHandle("option", event => event.target.value as DeriveAction)} value={option}>
+                <select
+                  aria-label={t("options.general.deriveAction.label")}
+                  onChange={useHandle("option", event => event.target.value as DeriveAction)}
+                  value={option}>
                   {deriveActions.map(action => (
                     <option key={action} value={action}>
                       {t(`options.general.deriveAction.${action}`)}

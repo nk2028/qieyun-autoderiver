@@ -1,5 +1,8 @@
 {
   "app.title": "切韻音系推導器",
+  "app.meta.description": "線上切韻音系推導工具：從音韻地位生成切韻拼音與中古漢語擬音，並推導普通話、粵語、上海話等歷史及現代漢語音系。",
+  "app.meta.ogDescription": "從音韻地位生成切韻拼音與中古漢語擬音，並推導歷史音系及普通話、粵語、上海話等現代漢語音系。",
+  "app.meta.imageAlt": "切韻音系推導器圖示",
   "app.goToLegacy": "前往舊版",
   "app.defaultFileName": "無標題",
   "app.info.about.title": "關於",
@@ -28,6 +31,7 @@
   "options.general.deriveAction.compareSchemas": "比較多個方案，並導出結果相異的音韻地位",
   "options.general.deriveAction.exportAllSyllables": "導出所有音節",
   "options.general.deriveAction.exportAllSyllablesWithCount": "導出所有音節，並計數",
+  "options.general.deriveAction.label": "推導操作",
   "options.general.articleInput.placeholder": "輸入框",
   "options.general.convertVariant": "轉換異體字",
   "options.general.syncPosition": "同步音韻地位選擇至輸入框",

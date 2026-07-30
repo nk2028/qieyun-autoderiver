@@ -1,18 +1,103 @@
 <!doctype html>
-<html dir="ltr">
+<html lang="zh-HK" dir="ltr">
   <head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
 
     <title>切韻音系推導器</title>
     <meta
       name="description"
-      content="一個語言學線上工具，用於生成切韻音系的拼音和擬音，並推導後世音系發音和現代方言發音。An online linguistic tool for generating phonological reconstructions of the Qieyun system, as well as extrapolated historical and modern phonological systems derived from it." />
+      content="線上切韻音系推導工具：從音韻地位生成切韻拼音與中古漢語擬音，並推導普通話、粵語、上海話等歷史及現代漢語音系。" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#fbfbfb" />
+    <link rel="canonical" href="https://nk2028.shn.hk/tshet-uinh-deriver/" />
+    <link
+      rel="alternate"
+      hreflang="zh-HK"
+      href="https://nk2028.shn.hk/tshet-uinh-deriver/?lang=zh-HK" />
+    <link
+      rel="alternate"
+      hreflang="en-GB"
+      href="https://nk2028.shn.hk/tshet-uinh-deriver/?lang=en-GB" />
+    <link rel="alternate" hreflang="x-default" href="https://nk2028.shn.hk/tshet-uinh-deriver/" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://avatars3.githubusercontent.com/u/63484757?s=400&amp;v=4" />
+    <meta property="og:locale" content="zh_HK" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:site_name" content="切韻音系推導器" />
+    <meta property="og:title" content="切韻音系推導器" />
+    <meta
+      property="og:description"
+      content="從音韻地位生成切韻拼音與中古漢語擬音，並推導歷史音系及普通話、粵語、上海話等現代漢語音系。" />
+    <meta property="og:url" content="https://nk2028.shn.hk/tshet-uinh-deriver/" />
+    <meta
+      property="og:image"
+      content="https://nk2028.shn.hk/tshet-uinh-deriver/android-chrome-512x512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="切韻音系推導器圖示" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="切韻音系推導器" />
+    <meta
+      name="twitter:description"
+      content="從音韻地位生成切韻拼音與中古漢語擬音，並推導歷史及現代漢語音系。" />
+    <meta
+      name="twitter:image"
+      content="https://nk2028.shn.hk/tshet-uinh-deriver/android-chrome-512x512.png" />
+
+    <script id="structured-data" type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://nk2028.shn.hk/tshet-uinh-deriver/#website",
+            "url": "https://nk2028.shn.hk/tshet-uinh-deriver/",
+            "name": "切韻音系推導器",
+            "alternateName": "Tshet-uinh Deriver",
+            "inLanguage": ["zh-HK", "en-GB"]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://nk2028.shn.hk/tshet-uinh-deriver/#webpage",
+            "url": "https://nk2028.shn.hk/tshet-uinh-deriver/",
+            "name": "切韻音系推導器",
+            "description": "從音韻地位生成切韻拼音與中古漢語擬音，並推導歷史及現代漢語音系。",
+            "isPartOf": {
+              "@id": "https://nk2028.shn.hk/tshet-uinh-deriver/#website"
+            },
+            "about": {
+              "@id": "https://nk2028.shn.hk/tshet-uinh-deriver/#application"
+            },
+            "inLanguage": "zh-HK"
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "https://nk2028.shn.hk/tshet-uinh-deriver/#application",
+            "name": "切韻音系推導器",
+            "alternateName": "Tshet-uinh Deriver",
+            "url": "https://nk2028.shn.hk/tshet-uinh-deriver/",
+            "description": "用於生成切韻音系拼音及中古漢語擬音，並推導歷史和現代漢語音系的線上語言學工具。",
+            "applicationCategory": "ReferenceApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript and a modern web browser",
+            "isAccessibleForFree": true,
+            "featureList": [
+              "生成切韻拼音與中古漢語擬音",
+              "推導歷史音系與現代漢語方言",
+              "比較多個推導方案",
+              "支援自訂推導方案",
+              "提供中文及英文介面"
+            ],
+            "sameAs": "https://github.com/nk2028/tshet-uinh-deriver",
+            "license": "https://opensource.org/license/mit"
+          }
+        ]
+      }
+    </script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
@@ -32,9 +117,45 @@
       defer
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon='{"token": "16ad6c356b37426cb31816318ed5a42d"}'></script>
+    <style>
+      .seo-fallback {
+        max-width: 60rem;
+        margin: 3rem auto;
+        padding: 0 1.25rem;
+        color: #262c3d;
+        font-family: "Noto Serif TC", "Noto Serif SC", serif;
+        line-height: 1.7;
+      }
+      .seo-fallback h1 {
+        line-height: 1.3;
+      }
+      .seo-fallback a {
+        color: #315177;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="seo-fallback">
+        <h1>切韻音系推導器</h1>
+        <p>
+          線上中古漢語音韻學工具：從音韻地位生成切韻拼音與中古漢語擬音，並推導歷史音系及普通話、粵語、上海話等現代漢語音系。
+        </p>
+        <h2>主要功能</h2>
+        <ul>
+          <li>使用切韻拼音、白一平、高本漢、王力、潘悟雲等預置方案生成中古漢語擬音。</li>
+          <li>推導盛唐、中唐、北宋、《蒙古字韻》、《中原音韻》及現代漢語方言音系。</li>
+          <li>比較多個方案、轉換異體字，並編寫或載入自訂推導方案。</li>
+        </ul>
+        <p lang="en-GB">
+          Tshet-uinh Deriver is an online tool for Qieyun phonological reconstruction and the derivation of
+          historical and modern Chinese phonological systems.
+        </p>
+        <p>
+          <a href="https://github.com/nk2028/tshet-uinh-deriver">原始碼與項目說明</a>
+        </p>
+      </main>
+    </div>
     <script src="src/index.tsx" type="module"></script>
   </body>
 </html>

@@ -640,11 +640,75 @@ const FontPreload = styled.span`
   overflow: hidden;
 `;
 
+const baseUrl = "https://nk2028.shn.hk/tshet-uinh-deriver/";
+const languageInfo = {
+  zh: { htmlLang: "zh-HK", query: "zh-HK", ogLocale: "zh_HK", alternateOgLocale: "en_GB" },
+  en: { htmlLang: "en-GB", query: "en-GB", ogLocale: "en_GB", alternateOgLocale: "zh_HK" },
+} as const;
+type AppLanguage = keyof typeof languageInfo;
+
+function getAppLanguage(language: string | undefined): AppLanguage {
+  return language?.startsWith("en") ? "en" : "zh";
+}
+
+function setMetaContent(selector: string, content: string) {
+  document.querySelector<HTMLMetaElement>(selector)?.setAttribute("content", content);
+}
+
+function updateDocumentMetadata(language: AppLanguage, t: TFunction) {
+  const info = languageInfo[language];
+  const requestedLanguage = new URLSearchParams(location.search).get("lang");
+  const hasExplicitLanguage = ["zh", "zh-HK", "en", "en-GB"].includes(requestedLanguage ?? "");
+  const canonicalUrl = hasExplicitLanguage ? `${baseUrl}?lang=${info.query}` : baseUrl;
+  const title = t("app.title");
+  const description = t("app.meta.description");
+  const socialDescription = t("app.meta.ogDescription");
+
+  document.documentElement.lang = info.htmlLang;
+  document.title = title;
+  document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute("href", canonicalUrl);
+  setMetaContent('meta[name="description"]', description);
+  setMetaContent('meta[property="og:locale"]', info.ogLocale);
+  setMetaContent('meta[property="og:locale:alternate"]', info.alternateOgLocale);
+  setMetaContent('meta[property="og:site_name"]', title);
+  setMetaContent('meta[property="og:title"]', title);
+  setMetaContent('meta[property="og:description"]', socialDescription);
+  setMetaContent('meta[property="og:url"]', canonicalUrl);
+  setMetaContent('meta[property="og:image:alt"]', t("app.meta.imageAlt"));
+  setMetaContent('meta[name="twitter:title"]', title);
+  setMetaContent('meta[name="twitter:description"]', socialDescription);
+
+  const structuredData = document.querySelector<HTMLScriptElement>("#structured-data");
+  if (structuredData?.textContent) {
+    const data = JSON.parse(structuredData.textContent) as { "@graph"?: Array<Record<string, unknown>> };
+    const webpage = data["@graph"]?.find(item => item["@type"] === "WebPage");
+    if (webpage) {
+      webpage["url"] = canonicalUrl;
+      webpage["name"] = title;
+      webpage["description"] = description;
+      webpage["inLanguage"] = info.htmlLang;
+      structuredData.textContent = JSON.stringify(data);
+    }
+  }
+}
+
 export default function App() {
   const { t, i18n } = useTranslation();
   const evaluateHandlerRef = useRef(noop);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const langSwitcherRef = useRef<HTMLDivElement>(null);
+  const activeLanguage = getAppLanguage(i18n.resolvedLanguage ?? i18n.language);
+
+  const selectLanguage = useCallback(
+    (language: AppLanguage) => {
+      const url = new URL(location.href);
+      url.searchParams.set("lang", languageInfo[language].query);
+      history.replaceState(history.state, "", `${url.pathname}${url.search}${url.hash}`);
+      void i18n.changeLanguage(language);
+      setLangMenuOpen(false);
+    },
+    [i18n],
+  );
 
   useEffect(() => {
     if (!langMenuOpen) return;
@@ -656,10 +720,8 @@ export default function App() {
   }, [langMenuOpen]);
 
   useEffect(() => {
-    const langCode = i18n.language === "en" ? "en-GB" : "zh-HK";
-    document.documentElement.lang = langCode;
-    document.title = t("app.title");
-  }, [t, i18n]);
+    updateDocumentMetadata(activeLanguage, t);
+  }, [activeLanguage, t]);
 
   return (
     <Container>
@@ -704,16 +766,12 @@ export default function App() {
                       role="button"
                       tabIndex={0}
                       lang="zh-HK"
-                      $active={i18n.language === "zh"}
-                      onClick={() => {
-                        i18n.changeLanguage("zh");
-                        setLangMenuOpen(false);
-                      }}
+                      $active={activeLanguage === "zh"}
+                      onClick={() => selectLanguage("zh")}
                       onKeyDown={e => {
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();
-                          i18n.changeLanguage("zh");
-                          setLangMenuOpen(false);
+                          selectLanguage("zh");
                         }
                       }}>
                       中文
@@ -722,16 +780,12 @@ export default function App() {
                       role="button"
                       tabIndex={0}
                       lang="en-GB"
-                      $active={i18n.language === "en"}
-                      onClick={() => {
-                        i18n.changeLanguage("en");
-                        setLangMenuOpen(false);
-                      }}
+                      $active={activeLanguage === "en"}
+                      onClick={() => selectLanguage("en")}
                       onKeyDown={e => {
                         if (e.key === "Enter" || e.key === " ") {
                           e.preventDefault();
-                          i18n.changeLanguage("en");
-                          setLangMenuOpen(false);
+                          selectLanguage("en");
                         }
                       }}>
                       English
