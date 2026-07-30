@@ -26,7 +26,7 @@ injectGlobal`
     overflow: hidden;
     touch-action: none;
   }
-  html:lang(zh-HK), html :lang(zh-HK) {
+  html:lang(zh-HK), html :lang(zh-HK), html:lang(ja), html :lang(ja) {
     font-family: "Source Han Serif C", "Source Han Serif K", "Noto Serif CJK KR", "Source Han Serif SC",
       "Noto Serif CJK SC", "Source Han Serif", "Noto Serif CJK JP", "Source Han Serif TC", "Noto Serif CJK TC",
       "Noto Serif KR", "Noto Serif SC", "Noto Serif TC", "Jomolhari", "HanaMin", "CharisSILW", serif;
@@ -35,10 +35,6 @@ injectGlobal`
     font-family: "Roboto", "Source Han Serif C", "Source Han Serif K", "Noto Serif CJK KR", "Source Han Serif SC",
       "Noto Serif CJK SC", "Source Han Serif", "Noto Serif CJK JP", "Source Han Serif TC", "Noto Serif CJK TC",
       "Noto Serif KR", "Noto Serif SC", "Noto Serif TC", "Jomolhari", "HanaMin", "CharisSILW", sans-serif;
-  }
-  html:lang(ja), html :lang(ja) {
-    font-family: "Noto Serif JP", "Source Han Serif", "Noto Serif CJK JP", "HanaMin", serif;
-    font-language-override: normal;
   }
   body.dragging {
     user-select: none;
